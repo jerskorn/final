@@ -5,10 +5,10 @@ from io import StringIO
 from werkzeug.utils import secure_filename
 
 UPLOAD_FOLDER = 'C:\Final Project\output'
-ALLOWED_EXTENSIONS = {'txt', 'pdf', 'png', 'jpg', 'jpeg', 'gif', 'csv'}
+ALLOWED_EXTENSIONS = {'csv'}
 
 app = Flask(__name__)
-
+app.run(debug=True)
 
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
@@ -59,12 +59,11 @@ def home():
                     else:
                          g_writer.writerow(row)
                         
-          
-               # save good and bad files to output folder
-               f.save(os.path.join(app.config['UPLOAD_FOLDER'], good_filename))
-               f.save(os.path.join(app.config['UPLOAD_FOLDER'], bad_filename))
           # auto download good file
-          return redirect(url_for('download_file', name=good_filename))     
+          return redirect(url_for('download_file', name=good_filename)) 
+
+def new_func(f):
+    return StringIO(f.read().decode('utf-8-sig'))    
 
 @app.route('/uploads/<name>')
 def download_file(name):
