@@ -60,10 +60,9 @@ def home():
                          g_writer.writerow(row)
                         
           # auto download good file
-          return redirect(url_for('download_file', name=good_filename)) 
-
-def new_func(f):
-    return StringIO(f.read().decode('utf-8-sig'))    
+          return render_template("success.html", good_filename=good_filename, bad_filename=bad_filename)
+         # return redirect(url_for('download_file', name=good_filename)) 
+   
 
 @app.route('/uploads/<name>')
 def download_file(name):

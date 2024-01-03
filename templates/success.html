@@ -7,12 +7,14 @@
     </head>
     <body>
         <div class="header">
-            <h1>Success!!</h1>
+            <h1>Success!! Clink links below to download your files</h1>
         </div>
         <div>
-            {{ name }}
+            <a href="/uploads/{{good_filename}}">{{good_filename}}</a> <br>
+            <a href="/uploads/{{bad_filename}}">{{bad_filename}}</a>
         </div>
-
+        <a href="/">
+            <button>Upload more files</button>
         
     </body>
 </html>
