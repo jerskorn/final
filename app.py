@@ -41,7 +41,9 @@ def home():
           keys = rows.fieldnames
           
           # Open two files to write good and bad data
-          with open(os.path.join('output', good_filename), 'w', newline='') as g, open(os.path.join('output', bad_filename), 'w', newline='') as b :
+          
+          #with open(os.path.join('output', good_filename), 'w', newline='') as g, open(os.path.join('output', bad_filename), 'w', newline='') as b :
+          with open(os.path.join(app.config['UPLOAD_FOLDER'], good_filename), 'w', newline='') as g, open(os.path.join(app.config['UPLOAD_FOLDER'], bad_filename), 'w', newline='') as b :
                
                # get writer and writer header row for good
                g_writer = csv.DictWriter(g, keys)
@@ -53,7 +55,7 @@ def home():
                
                # if the start time zeros bad data write to file
                for row in rows:
-                    if row["START TIME"] == "0:00:00":
+                    if row["START TIME"] == "0:00:00" or row["END TIME"] == "0:00:00":
                          b_writer.writerow(row)
                     # else it's good data write to file     
                     else:
@@ -61,8 +63,7 @@ def home():
                         
           # auto download good file
           return render_template("success.html", good_filename=good_filename, bad_filename=bad_filename)
-         # return redirect(url_for('download_file', name=good_filename)) 
-   
+      
 
 @app.route('/uploads/<name>')
 def download_file(name):
