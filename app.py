@@ -47,7 +47,7 @@ def allowed_file(filename):
 @app.route("/",methods=["GET", "POST"])
 def home():
      if request.method == "GET":
-         return render_template("final.html")
+         return render_template("index.html")
      # Get file to be uploaded
      f = request.files['file'] 
      # if valid 
