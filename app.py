@@ -83,7 +83,7 @@ def home():
                
                # if the start time zeros bad data write to file
                for row in rows:
-                    if row["START TIME"] == "0:00:00" or row["START TIME"] == "0:00:00" or row["END TIME"] == "0:00:00" or row["END TIME"] == "00:00:00":
+                    if row["START TIME"] == "0:00:00" or row["START TIME"] == "00:00:00" or row["END TIME"] == "0:00:00" or row["END TIME"] == "00:00:00":
                          b_writer.writerow(row)
                          
                     # else it's good data write to file and summarize     
