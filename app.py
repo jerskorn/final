@@ -83,7 +83,7 @@ def home():
                
                # if the start time zeros bad data write to file
                for row in rows:
-                    if row["START TIME"] == "0:00:00" or row["END TIME"] == "0:00:00":
+                    if row["START TIME"] == "0:00:00" or row["START TIME"] == "0:00:00" or row["END TIME"] == "0:00:00" or row["END TIME"] == "00:00:00":
                          b_writer.writerow(row)
                          
                     # else it's good data write to file and summarize     
@@ -117,6 +117,8 @@ def home():
                s_writer = csv.DictWriter(s, fieldnames=fieldnames)
                s_writer.writeheader()
                s_writer.writerows(summary_list) 
+               
+          summary_list.clear()
           
           # We did it.  Return success page and offer downloads
      return render_template("success.html", good_filename=good_filename, bad_filename=bad_filename, good_summary=good_summary)
